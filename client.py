@@ -11,12 +11,8 @@ s.connect((HOST, PORT))
 pwd = sys.argv[2]
 s.send(pwd.encode())
 data = s.recv(1024).decode()
-if data != "authenticated":
+if data != "done":
     print(data)
     exit()
-
-while True:
-    command = input("$ ").strip()
-    s.send(command.encode())
 
 s.close()
