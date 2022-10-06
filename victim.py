@@ -21,8 +21,8 @@ while True:
     if address[0] == CLIENT_IP:
         print("Address match")
         res = urlopen('http://just-the-time.appspot.com/')
-        print("time: " + time)
         time = res.read().strip().decode('utf-8')
+        print("time: " + time)
         pwd = conn.recv(4096).decode()
         # Check the hash
         if pwd == str(hash("haxor" + time)):
