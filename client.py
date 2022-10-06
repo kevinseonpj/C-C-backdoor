@@ -14,6 +14,7 @@ s.connect((HOST, PORT))
 print("Connected to socket")
 pwd = sys.argv[3]
 res = urlopen('http://just-the-time.appspot.com/')
+print("res: ", res)
 time = res.read().strip().decode('utf-8')
 hashed_pwd = str(hash(pwd + time))
 print("Hashed pwd: " + hashed_pwd)
