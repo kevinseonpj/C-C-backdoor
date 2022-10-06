@@ -9,7 +9,7 @@ PORT = int(sys.argv[2])
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("Created socket")
 print("HOST: " + HOST)
-print("PORT: " + PORT)
+print("PORT: " + str(PORT))
 s.connect((HOST, PORT))
 print("Connected to socket")
 pwd = sys.argv[3]
