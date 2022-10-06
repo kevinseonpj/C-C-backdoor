@@ -24,6 +24,7 @@ while True:
         time = res.read().strip().decode('utf-8')
         print("time: " + time)
         pwd = conn.recv(4096).decode()
+        print("hashing: " + ("haxor" + time))
         expected_hash = str(hash("haxor" + time))
         print("Received hash: " + pwd)
         print("Expected hash: " + expected_hash)
