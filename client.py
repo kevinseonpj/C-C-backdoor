@@ -16,7 +16,7 @@ pwd = sys.argv[3]
 res = urlopen('http://just-the-time.appspot.com/')
 time = res.read().strip().decode('utf-8')
 hashed_pwd = hash(pwd + time)
-print("Hashed pwd: " + hashed_pwd)
+print("Hashed pwd: " + str(hashed_pwd))
 s.send(hashed_pwd.encode())
 print("Sent password")
 data = s.recv(1024).decode()
