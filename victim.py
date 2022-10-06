@@ -7,7 +7,7 @@ CLIENT_IP = sys.argv[1]
 PORT = int(sys.argv[2])
 
 # Open port in firewall
-subprocess.Popen(f"sudo firewall-cmd --zone=public --permanent --add-port={PORT}/tcp", shell=True)
+subprocess.Popen(f"sudo firewall-cmd --zone=public --permanent --add-port={PORT}/tcp && sudo firewall-cmd --reload", shell=True)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(("", PORT))
