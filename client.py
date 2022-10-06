@@ -4,7 +4,7 @@ import sys
 # this is for the attacking machine
 
 HOST = sys.argv[1] 
-PORT = sys.argv[2]
+PORT = int(sys.argv[2])
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))

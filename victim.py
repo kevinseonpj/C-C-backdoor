@@ -5,7 +5,7 @@ import socket
 import shlex
 
 CLIENT_IP = sys.argv[1] 
-PORT = sys.argv[2]
+PORT = int(sys.argv[2])
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(("", PORT))
