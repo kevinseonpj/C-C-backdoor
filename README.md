@@ -1,9 +1,9 @@
 Command to run on victim machine:
 ```bash
-python victim.py <client ip>
+python3 victim.py <client ip> <port>
 ```
 
 Command to run on attack/client machine:
 ```bash
-python client.py <victim ip> <password>
+python3 client.py <victim ip> <port> <password>
 ```
