@@ -3,6 +3,7 @@ import sys
 import subprocess
 import socket
 from urllib.request import urlopen
+import hashlib
 
 CLIENT_IP = sys.argv[1] 
 PORT = int(sys.argv[2])
@@ -22,10 +23,8 @@ while True:
         print("Address match")
         res = urlopen('http://just-the-time.appspot.com/')
         time = res.read().strip().decode('utf-8')
-        print("time: " + time)
         pwd = conn.recv(4096).decode()
-        print("hashing: " + ("haxor" + time))
-        expected_hash = str(hash("haxor" + time))
+        expected_hash = str(hashlib.sha512(("haxor" + time).encode()).hexdigest())
         print("Received hash: " + pwd)
         print("Expected hash: " + expected_hash)
         # Check the hash

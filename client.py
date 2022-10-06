@@ -1,6 +1,7 @@
 import socket
 import sys
 from urllib.request import urlopen
+import hashlib
 # this is for the attacking machine
 
 HOST = sys.argv[1] 
@@ -11,9 +12,7 @@ s.connect((HOST, PORT))
 pwd = sys.argv[3].strip()
 res = urlopen('http://just-the-time.appspot.com/')
 time = res.read().strip().decode('utf-8')
-print("time: " + time)
-print("hashing: " + (pwd + time))
-hashed_pwd = str(hash(pwd + time))
+hashed_pwd = str(hashlib.sha512((pwd + time).encode()).hexdigest())
 print("Hashed pwd: " + hashed_pwd)
 s.send(hashed_pwd.encode())
 print("Sent password")
