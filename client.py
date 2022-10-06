@@ -12,6 +12,7 @@ s.connect((HOST, PORT))
 print("Connected to socket")
 pwd = sys.argv[3]
 s.send(pwd.encode())
+print("Sent password")
 data = s.recv(1024).decode()
 print("Received data: " + data)
 if data != "done":
